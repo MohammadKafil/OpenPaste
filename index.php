@@ -1,4 +1,5 @@
 <?php
+header("X-XSS-Protection: 1"); // useless but still using..maybe will work
 date_default_timezone_set("America/New_York");
 function getUserIP()
 {
@@ -41,6 +42,9 @@ if($_POST)
 	else if(strlen($title) <= 100)
 	{
 		$content = nl2br($content);
+		$content = filter_var($content, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_SANITIZE_ENCODED);
+		$title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_SANITIZE_ENCODED);
+		$fname = filter_var($fname, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_SANITIZE_ENCODED);
 		$link = 'http://openpaste.000webhostapp.com/' . $filename;
 		$handle = fopen($filename, "a");
 		fwrite($handle, "<html><head><title>" . $fname . "</title><link rel='stylesheet' href='style.css'></head><body><h1>" . $title . "</h1>" . "<h2>Your File Link: " . $link . "</h2><p>" . $content . "</p><br>" . "DATE: " . $date . "<br>TIME: " . $time . "<br></body></html>");
