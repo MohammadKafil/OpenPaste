@@ -1,1 +1,0 @@
-The two index files are there just to make sure that noone can simple view directory content. We can however discover files in the directory very easily. But this is for fun demonstration.
