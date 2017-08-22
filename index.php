@@ -30,7 +30,7 @@ $namelength = 35;
 $randomfilename = '';
 for($i = 0; $i < $namelength; $i++)
 {
-	$randomfilename .= $chars[mt_rand(0, 36)];
+	$randomfilename .= $chars[mt_rand(0, strlen($chars)-1)];
 }
 
 
